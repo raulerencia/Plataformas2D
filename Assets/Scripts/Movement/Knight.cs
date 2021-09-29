@@ -61,6 +61,13 @@ public class Knight : MonoBehaviour
         if(col.gameObject.tag.Equals("Ground")){
             anim.SetBool("jump", false);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        
+        if(col.gameObject.tag.Equals("Star")){
+            Destroy(col.gameObject);
+        }
 
     }
 

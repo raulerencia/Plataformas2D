@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class profeMove : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class profeMove : MonoBehaviour
     private Animator anim;
     private float horizontal;
     private int costat;
+    int starsCount = 0;
+    public Text contadorEstrellas;
+
+    //public GameController gc;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +54,8 @@ public class profeMove : MonoBehaviour
             anim.SetBool("walk", false);
         }
         transform.localScale = new Vector3(costat * 2, 2, 2);
+
+        contadorEstrellas.text = starsCount + "";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,6 +64,15 @@ public class profeMove : MonoBehaviour
         {
             anim.SetBool("jump", false);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        
+        if(col.gameObject.tag.Equals("Star")){
+            Destroy(col.gameObject);
+            starsCount++;
+        }
+
     }
 }
 
