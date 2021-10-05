@@ -8,6 +8,7 @@ TagManager:
   - Star
   - asdasd
   - Jugador
+  - DeadZone
   layers:
   - Default
   - TransparentFX

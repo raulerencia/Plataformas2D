@@ -7,6 +7,11 @@ public class Bomb : MonoBehaviour
 
     private Animator anim;
 
+    public AudioManager am;
+    public GameController gc;
+
+    public 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +21,8 @@ public class Bomb : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag.Equals("Jugador")){
             anim.SetBool("explosion", true);
+            am.PlayBombFX();
+            gc.LoseLive();
             StartCoroutine("Destruir");
         }
     }

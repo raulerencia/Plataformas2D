@@ -12,8 +12,9 @@ public class profeMove : MonoBehaviour
     private Animator anim;
     private float horizontal;
     private int costat;
-    int starsCount = 0;
-    public Text contadorEstrellas;
+    public GameController gc;
+    //int starsCount = 0;
+    //public Text contadorEstrellas;
 
     //public GameController gc;
 
@@ -55,7 +56,7 @@ public class profeMove : MonoBehaviour
         }
         transform.localScale = new Vector3(costat * 2, 2, 2);
 
-        contadorEstrellas.text = starsCount + "";
+        //contadorEstrellas.text = starsCount + "";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,6 +64,12 @@ public class profeMove : MonoBehaviour
         if (collision.collider.tag == "Ground")
         {
             anim.SetBool("jump", false);
+            
+        }
+        else if (collision.collider.tag == "DeadZone")
+        {
+            gc.gameOverBox.SetActive(true);
+
         }
     }
 
@@ -70,7 +77,8 @@ public class profeMove : MonoBehaviour
         
         if(col.gameObject.tag.Equals("Star")){
             Destroy(col.gameObject);
-            starsCount++;
+            //starsCount++;
+            gc.sumar();
         }
 
     }
